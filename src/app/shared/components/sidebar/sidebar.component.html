@@ -1,0 +1,58 @@
+<nav class="sidebar" [class.collapsed]="isCollapsed">
+
+  <!-- Logo / Brand -->
+  <div class="sidebar-brand">
+    <ng-container *ngIf="!isCollapsed">
+      <div class="brand-logo">🏗</div>
+      <span class="brand-name">Construction ERP</span>
+    </ng-container>
+    <button class="collapse-btn" (click)="toggleCollapse()" [title]="isCollapsed ? 'Expand' : 'Collapse'">
+      <span>{{ isCollapsed ? '›' : '‹' }}</span>
+    </button>
+  </div>
+
+  <!-- Navigation -->
+  <div class="sidebar-nav">
+    <ng-container *ngFor="let group of navGroups">
+
+      <!-- Group Label -->
+      <div class="nav-group-label" *ngIf="group.groupLabel && !isCollapsed">
+        {{ group.groupLabel }}
+      </div>
+
+      <!-- Nav Items -->
+      <ng-container *ngFor="let item of group.items">
+
+        <!-- Simple link -->
+        <a *ngIf="!item.children"
+           [routerLink]="item.route"
+           routerLinkActive="active"
+           class="nav-item"
+           [title]="isCollapsed ? item.label : ''">
+          <span class="nav-icon">{{ item.icon }}</span>
+          <span class="nav-label" *ngIf="!isCollapsed">{{ item.label }}</span>
+        </a>
+
+        <!-- Group with children -->
+        <div *ngIf="item.children" class="nav-group">
+          <div class="nav-item" (click)="toggleSubMenu(item)" [title]="isCollapsed ? item.label : ''">
+            <span class="nav-icon">{{ item.icon }}</span>
+            <span class="nav-label" *ngIf="!isCollapsed">{{ item.label }}</span>
+            <span class="nav-chevron" *ngIf="!isCollapsed">{{ item.expanded ? '▾' : '▸' }}</span>
+          </div>
+          <div class="nav-submenu" *ngIf="item.expanded && !isCollapsed">
+            <a *ngFor="let child of item.children"
+               [routerLink]="child.route"
+               routerLinkActive="active"
+               class="nav-item sub">
+              <span class="nav-label">{{ child.label }}</span>
+            </a>
+          </div>
+        </div>
+
+      </ng-container>
+
+    </ng-container>
+  </div>
+
+</nav>

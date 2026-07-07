@@ -1,0 +1,78 @@
+<div class="fade-in">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <div class="page-title">Dashboard Overview</div>
+      <div class="page-subtitle">Welcome back, Admin — here's what's happening today.</div>
+    </div>
+    <button class="btn btn-primary">📥 Export Report</button>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="dashboard-grid">
+    <div class="metric-card" *ngFor="let stat of stats">
+      <div class="metric-top">
+        <div class="metric-icon">{{ stat.icon }}</div>
+        <span class="metric-trend" [class.positive]="stat.positive" [class.negative]="!stat.positive">
+          {{ stat.positive ? '▲' : '▼' }} {{ stat.trend }}
+        </span>
+      </div>
+      <div class="metric-value">{{ stat.value }}</div>
+      <div class="metric-label">{{ stat.label }}</div>
+    </div>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="grid" style="grid-template-columns: 2fr 1fr;">
+
+    <!-- Recent Transactions -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-header-title">Recent Transactions</span>
+        <a href="#" class="text-sm text-primary">View all →</a>
+      </div>
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Project</th>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let txn of recentTransactions">
+              <td><span class="table-code">{{ txn.id }}</span></td>
+              <td>{{ txn.type }}</td>
+              <td class="font-medium">{{ txn.project }}</td>
+              <td class="font-semibold text-success">{{ txn.amount }}</td>
+              <td class="text-muted text-xs">{{ txn.date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Top Projects -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-header-title">Top Projects</span>
+        <span class="badge badge-info">{{ topProjects.length }} Active</span>
+      </div>
+      <div class="card-body" style="padding: 12px;">
+        <div class="project-row" *ngFor="let p of topProjects; let i = index">
+          <div class="project-rank">#{{ i + 1 }}</div>
+          <div class="project-info">
+            <div class="font-medium text-sm">{{ p.name }}</div>
+            <div class="text-success text-xs font-semibold">{{ p.profit }}</div>
+          </div>
+          <span class="badge badge-active">{{ p.status }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

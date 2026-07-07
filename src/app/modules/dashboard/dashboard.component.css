@@ -1,0 +1,21 @@
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 4px;
+  transition: background var(--transition);
+}
+.project-row:hover { background: var(--slate-50); }
+.project-rank {
+  width: 24px; height: 24px;
+  background: var(--primary-50);
+  color: var(--primary);
+  border-radius: 50%;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.project-info { flex: 1; }
