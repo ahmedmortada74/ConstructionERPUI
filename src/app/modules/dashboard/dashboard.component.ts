@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -25,8 +25,8 @@ export class DashboardComponent {
   ];
 
   topProjects = [
-    { name: 'Nile Tower', profit: '450,000 EGP', status: 'Active' },
-    { name: 'Cairo Mall', profit: '320,000 EGP', status: 'Active' },
-    { name: 'Giza Plaza', profit: '210,000 EGP', status: 'Active' }
+    { name: 'Nile Tower', profit: '450,000 EGP', status: 'نشط' },
+    { name: 'Cairo Mall', profit: '320,000 EGP', status: 'نشط' },
+    { name: 'Giza Plaza', profit: '210,000 EGP', status: 'نشط' }
   ];
 }
