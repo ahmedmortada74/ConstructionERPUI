@@ -80,7 +80,13 @@
   <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
     <div class="modal" (click)="$event.stopPropagation()">
       <div class="modal-header">
-        <h3 class="card-header-title">إضافة عنصر جديد</h3>
+        <div class="modal-header-left">
+          <div class="modal-header-icon">&#129722;</div>
+          <div>
+            <div class="modal-header-title">إضافة مادة جديدة</div>
+            <div class="modal-header-subtitle">أدخل بيانات المادة</div>
+          </div>
+        </div>
         <button class="btn-icon" (click)="closeModal()">&#10006;</button>
       </div>
       <div class="modal-body">
@@ -106,7 +112,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline" (click)="closeModal()">إلغاء</button>
-        <button class="btn btn-primary" (click)="closeModal()">حفظ</button>
+        <button class="btn btn-primary" (click)="closeModal()">&#10003; حفظ البيانات</button>
       </div>
     </div>
   </div>

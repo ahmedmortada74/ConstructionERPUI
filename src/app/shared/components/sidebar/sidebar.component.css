@@ -1,148 +1,416 @@
-:host { display: block; height: 100vh; flex-shrink: 0; }
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
 
-/* ── Container ── */
+:host {
+    display: block;
+    height: 100vh;
+    flex-shrink: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* ==========================================================
+   Sidebar
+========================================================== */
+
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
-    background: var(--sidebar-bg);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transition: width var(--transition-slow);
-    box-shadow: 1px 0 0 var(--sidebar-border);
+
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+
+    transition:
+        width .28s ease,
+        background .25s ease;
+
+    box-shadow:
+        2px 0 15px rgba(0, 0, 0, .12);
+
+    position: relative;
     flex-shrink: 0;
 }
-.sidebar.collapsed { width: var(--sidebar-collapsed); }
 
-/* ── Brand ── */
+.sidebar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, .03),
+            transparent 18%,
+            transparent 82%,
+            rgba(255, 255, 255, .02));
+}
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed);
+}
+
+/* ==========================================================
+   Brand
+========================================================== */
+
 .sidebar-brand {
+
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 0 10px;
+    gap: 12px;
+
     height: var(--header-height);
+
+    padding: 0 16px;
+
     border-bottom: 1px solid var(--sidebar-border);
-    flex-shrink: 0;
-    overflow: visible;
-    position: relative;
+
+    transition: .25s;
 }
 
-/* When collapsed: center the toggle button */
 .sidebar.collapsed .sidebar-brand {
     justify-content: center;
     padding: 0;
 }
+
 .brand-logo {
-    font-size: 1.25rem;
-    width: 28px;
-    text-align: center;
+
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, .08);
+
+    font-size: 1.1rem;
+
     flex-shrink: 0;
 }
+
 .brand-name {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    white-space: nowrap;
-    overflow: hidden;
+
     flex: 1;
-    letter-spacing: 0.01em;
-}
-.collapse-btn {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.4);
-    cursor: pointer;
-    width: 26px; height: 26px;
-    border-radius: var(--radius-md);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    font-size: 0.8rem;
-    transition: all var(--transition);
-    z-index: 10;
-}
-.collapse-btn:hover { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.2); }
 
-/* ── Scrollable Nav ── */
-.sidebar-nav {
-    flex: 1; overflow-y: auto; overflow-x: hidden;
-    padding: 8px 0 24px;
-}
-.sidebar-nav::-webkit-scrollbar { width: 0; }
+    color: #fff;
 
-/* ── Group Label ── */
-.nav-group-label {
-    font-size: 0.6rem; font-weight: 700;
-    color: var(--sidebar-label);
-    letter-spacing: 0.14em;
-    padding: 14px 18px 5px;
-    user-select: none;
-    opacity: 0.85;
-}
+    font-size: .88rem;
 
-/* ── Nav Item ── */
-.nav-item {
-    display: flex; align-items: center; gap: 9px;
-    padding: 8px 12px;
-    margin: 1px 8px;
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    color: var(--sidebar-text);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 400;
-    transition: background var(--transition), color var(--transition);
+    font-weight: 700;
+
+    letter-spacing: .02em;
+
     white-space: nowrap;
+
     overflow: hidden;
-    position: relative;
+
+    transition: .25s;
 }
-.nav-item:hover {
-    background: var(--sidebar-item-hover);
-    color: var(--sidebar-text-hover);
+
+/* ==========================================================
+   Collapse Button
+========================================================== */
+
+.collapse-btn {
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, .45);
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    flex-shrink: 0;
 }
-.nav-item.active {
-    background: var(--sidebar-active-bg);
-    color: var(--accent-light);
-    font-weight: 500;
+
+.collapse-btn:hover {
+
+    background: rgba(255, 255, 255, .08);
+
+    color: #fff;
+
+    transform: rotate(180deg);
 }
-.nav-item.active::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 20%; bottom: 20%;
-    width: 3px;
+
+/* ==========================================================
+   Navigation
+========================================================== */
+
+.sidebar-nav {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    padding: 10px 0 24px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color: var(--accent) transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
     background: var(--accent);
-    border-radius: 0 3px 3px 0;
-    margin-left: -12px;
+    border-radius: 20px;
 }
 
-/* Collapsed: center icons */
-.sidebar.collapsed .nav-item {
-    justify-content: center;
-    padding: 9px 0;
-    margin: 2px 8px;
+.sidebar-nav::-webkit-scrollbar-track {
+    background: transparent;
 }
-.sidebar.collapsed .nav-item.active::before { display: none; }
 
-/* ── Nav Icon ── */
+/* ==========================================================
+   Group Label
+========================================================== */
+
+.nav-group-label {
+
+    padding: 18px 18px 6px;
+
+    color: var(--sidebar-label);
+
+    font-size: .65rem;
+
+    font-weight: 700;
+
+    letter-spacing: .15em;
+
+    text-transform: uppercase;
+
+    user-select: none;
+
+    transition: .25s;
+}
+
+/* ==========================================================
+   Main Item
+========================================================== */
+
+.nav-item {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 4px 10px;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: var(--sidebar-text);
+
+    font-size: .82rem;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    transition:
+        background .22s,
+        color .22s,
+        transform .15s;
+}
+
+.nav-item:hover {
+
+    background: rgba(255, 255, 255, .06);
+
+    color: #fff;
+
+    transform: translateX(2px);
+}
+
+.nav-item.active {
+
+    color: #fff;
+
+    background:
+        linear-gradient(90deg,
+            rgba(59, 130, 246, .22),
+            rgba(59, 130, 246, .08));
+
+    font-weight: 600;
+}
+
+.nav-item.active::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -10px;
+
+    top: 8px;
+
+    bottom: 8px;
+
+    width: 4px;
+
+    border-radius: 8px;
+
+    background: var(--accent);
+
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* ==========================================================
+   Icon
+========================================================== */
+
 .nav-icon {
-    font-size: 0.9rem; width: 18px;
-    text-align: center; flex-shrink: 0;
+
+    width: 22px;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 1rem;
+
+    flex-shrink: 0;
+
+    transition: .2s;
 }
 
-/* ── Nav Label & Chevron ── */
-.nav-label { flex: 1; overflow: hidden; text-overflow: ellipsis; }
-.nav-chevron { font-size: 0.65rem; color: rgba(255,255,255,0.25); margin-left: auto; }
+.nav-item:hover .nav-icon {
+    transform: scale(1.08);
+}
 
-/* ── Submenu ── */
+/* ==========================================================
+   Label
+========================================================== */
+
+.nav-label {
+
+    flex: 1;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.nav-chevron {
+
+    margin-left: auto;
+
+    font-size: .7rem;
+
+    color: rgba(255, 255, 255, .35);
+
+    transition: .25s;
+}
+
+.nav-item:hover .nav-chevron {
+
+    color: #fff;
+}
+
+/* ==========================================================
+   Sub Menu
+========================================================== */
+
 .nav-item.sub {
-    padding-left: 38px;
-    font-size: 0.775rem;
-    color: rgba(255,255,255,0.42);
-    margin: 0 8px;
-    border-radius: var(--radius-md);
-}
-.nav-item.sub:hover { color: rgba(255,255,255,0.8); }
-.nav-item.sub.active { color: var(--accent-light); background: transparent; }
-.nav-item.sub.active::before { display: none; }
 
-/* ── Collapsed Tooltip (via title attr) ── */
-.sidebar.collapsed .nav-icon { font-size: 1rem; width: auto; }
+    margin: 2px 10px 2px 38px;
+
+    padding: 8px 14px;
+
+    font-size: .78rem;
+
+    color: rgba(255, 255, 255, .55);
+
+    background: transparent;
+}
+
+.nav-item.sub:hover {
+
+    color: #fff;
+
+    background: rgba(255, 255, 255, .05);
+}
+
+.nav-item.sub.active {
+
+    color: var(--accent-light);
+
+    background: rgba(59, 130, 246, .08);
+}
+
+.nav-item.sub.active::before {
+    display: none;
+}
+
+/* ==========================================================
+   Collapsed Sidebar
+========================================================== */
+
+.sidebar.collapsed .nav-item {
+
+    justify-content: center;
+
+    padding: 11px 0;
+}
+
+.sidebar.collapsed .nav-item.active::before {
+    display: none;
+}
+
+.sidebar.collapsed .brand-name,
+.sidebar.collapsed .nav-label,
+.sidebar.collapsed .nav-chevron,
+.sidebar.collapsed .nav-group-label {
+
+    opacity: 0;
+
+    width: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.sidebar.collapsed .nav-icon {
+
+    width: auto;
+
+    font-size: 1.05rem;
+}
+
+/* ==========================================================
+   Animation
+========================================================== */
+
+.nav-item,
+.brand-name,
+.nav-label,
+.nav-chevron,
+.nav-group-label,
+.collapse-btn {
+    transition: all .25s ease;
+}

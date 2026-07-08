@@ -23,59 +23,160 @@ export interface NavGroup {
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  isCollapsed = false;
 
+  isCollapsed = false;
   navGroups: NavGroup[] = [
+
     {
       items: [
-        { label: 'Dashboard', icon: '⊞', route: '/dashboard' }
+        {
+          label: 'لوحة التحكم',
+          icon: '⌂',
+          route: '/dashboard'
+        }
       ]
     },
+
     {
-      groupLabel: 'SETUP',
+      groupLabel: 'الإعدادات',
       items: [
-        { label: 'Company Settings', icon: '🏢', route: '/setup/company' },
-        { label: 'Projects', icon: '📁', route: '/setup/projects' },
-        { label: 'Cost Centers', icon: '◎', route: '/setup/cost-centers' },
-        { label: 'Materials & Units', icon: '📦', route: '/setup/materials' },
-        { label: 'Equipment', icon: '🔧', route: '/setup/equipment' },
-        { label: 'Banks', icon: '🏦', route: '/setup/banks' },
-        { label: 'Treasuries', icon: '💰', route: '/setup/treasuries' },
-        { label: 'General Settings', icon: '⚙', route: '/setup/settings' }
+        {
+          label: 'بيانات الشركة',
+          icon: '□',
+          route: '/setup/company'
+        },
+        {
+          label: 'المشروعات',
+          icon: '▣',
+          route: '/setup/projects'
+        },
+        {
+          label: 'مراكز التكلفة',
+          icon: '◈',
+          route: '/setup/cost-centers'
+        },
+        {
+          label: 'المواد ووحدات القياس',
+          icon: '◩',
+          route: '/setup/materials'
+        },
+        {
+          label: 'المعدات',
+          icon: '⌘',
+          route: '/setup/equipment'
+        },
+        {
+          label: 'البنوك',
+          icon: '◫',
+          route: '/setup/banks'
+        },
+        {
+          label: 'الخزائن',
+          icon: '◉',
+          route: '/setup/treasuries'
+        },
+        {
+          label: 'الإعدادات العامة',
+          icon: '⚙',
+          route: '/setup/settings'
+        }
       ]
     },
+
     {
-      groupLabel: 'PARTIES',
+      groupLabel: 'الأطراف',
       items: [
-        { label: 'Suppliers', icon: '🏭', route: '/setup/suppliers' },
-        { label: 'Customers', icon: '👥', route: '/setup/customers' }
+        {
+          label: 'الموردون',
+          icon: '◌',
+          route: '/setup/suppliers'
+        },
+        {
+          label: 'العملاء',
+          icon: '◎',
+          route: '/setup/customers'
+        }
       ]
     },
+
     {
-      groupLabel: 'TRANSACTIONS',
+      groupLabel: 'الحركات',
       items: [
-        { label: 'Daily Supplies', icon: '🚚', route: '/transactions/supplies/daily-supplies' },
-        { label: 'Monthly Statements', icon: '📄', route: '/transactions/supplies/monthly-statements' },
-        { label: 'Equipment Rental', icon: '🚜', route: '/transactions/equipment-rental/rentals' },
-        { label: 'Purchases', icon: '🛒', route: '/transactions/purchases/invoices' },
-        { label: 'Sales', icon: '💳', route: '/transactions/sales/invoices' },
-        { label: 'Treasury', icon: '🏧', route: '/transactions/treasury/vouchers' },
-        { label: 'Bank Deposits', icon: '🏦', route: '/transactions/banks/deposits' },
-        { label: 'Expenses', icon: '💸', route: '/transactions/expenses' },
-        { label: 'Revenues', icon: '📈', route: '/transactions/revenues' }
+        {
+          label: 'توريدات يومية',
+          icon: '→',
+          route: '/transactions/supplies/daily-supplies'
+        },
+        {
+          label: 'الكشوف الشهرية',
+          icon: '≣',
+          route: '/transactions/supplies/monthly-statements'
+        },
+        {
+          label: 'تأجير المعدات',
+          icon: '⌗',
+          route: '/transactions/equipment-rental/rentals'
+        },
+        {
+          label: 'المشتريات',
+          icon: '+',
+          route: '/transactions/purchases/invoices'
+        },
+        {
+          label: 'المبيعات',
+          icon: '−',
+          route: '/transactions/sales/invoices'
+        },
+        {
+          label: 'الخزينة',
+          icon: '◍',
+          route: '/transactions/treasury/vouchers'
+        },
+        {
+          label: 'إيداعات البنوك',
+          icon: '◫',
+          route: '/transactions/banks/deposits'
+        },
+        {
+          label: 'المصروفات',
+          icon: '↘',
+          route: '/transactions/expenses'
+        },
+        {
+          label: 'الإيرادات',
+          icon: '↗',
+          route: '/transactions/revenues'
+        }
       ]
     },
+
     {
-      groupLabel: 'REPORTS',
+      groupLabel: 'التقارير',
       items: [
-        { label: 'Supplier Statement', icon: '📋', route: '/reports/supplier-statement' },
-        { label: 'Customer Statement', icon: '📋', route: '/reports/customer-statement' },
-        { label: 'Financial Statements', icon: '📊', route: '/reports/financial' },
-        { label: 'Project Profitability', icon: '📈', route: '/reports/profitability' }
+        {
+          label: 'كشف حساب المورد',
+          icon: '☰',
+          route: '/reports/supplier-statement'
+        },
+        {
+          label: 'كشف حساب العميل',
+          icon: '☰',
+          route: '/reports/customer-statement'
+        },
+        {
+          label: 'التقارير المالية',
+          icon: '◬',
+          route: '/reports/financial'
+        },
+        {
+          label: 'ربحية المشروعات',
+          icon: '△',
+          route: '/reports/profitability'
+        }
       ]
     }
-  ];
 
+  ];
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
   }
