@@ -1,3 +1,4 @@
+<!-- banks.component.html -->
 <div class="fade-in">
 
   <div class="page-header">
@@ -6,7 +7,9 @@
       <div class="page-subtitle">إدارة بيانات الحسابات البنكية.</div>
     </div>
     <div style="display: flex; gap: 10px;">
-      <button class="btn-primary-action" (click)="openBankDialog()">+ تسجيل بنك جديد</button>
+      <button class="btn-primary-action" (click)="openBankDialog()">
+        <i class="bi bi-plus-circle"></i> تسجيل بنك جديد
+      </button>
     </div>
   </div>
 
@@ -14,13 +17,13 @@
     <div class="toolbar">
       <div class="toolbar-left">
         <div class="search-box">
-          <span class="search-icon">&#128269;</span>
+          <span class="search-icon"><i class="bi bi-search"></i></span>
           <input type="text" placeholder="بحث...">
         </div>
       </div>
       <div class="toolbar-right">
-        <button class="btn-outline">&#8595; تصدير</button>
-        <button class="btn-outline">&#9783; تصفية</button>
+        <button class="btn-outline"><i class="bi bi-download"></i> تصدير</button>
+        <button class="btn-outline"><i class="bi bi-funnel"></i> تصفية</button>
       </div>
     </div>
 
@@ -38,7 +41,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of items; let i = index">
-
             <td><span class="table-code">{{ item.id }}</span></td>
             <td class="font-medium">{{ item.name }}</td>
             <td class="text-muted">{{ item.description }}</td>
@@ -50,9 +52,13 @@
             </td>
             <td class="text-muted text-xs">{{ item.date }}</td>
             <td>
-              <div class="action-btns" style="justify-content:center;">
-                <button class="btn-icon edit" title="تعديل" (click)="openBankDialog()">&#9998;</button>
-                <button class="btn-icon delete" title="حذف">&#128465;</button>
+              <div class="action-btns">
+                <button class="btn-icon edit" title="تعديل" (click)="openBankDialog(item)">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button class="btn-icon delete" title="حذف" (click)="deleteItem(i)">
+                 <i class="bi bi-trash"></i>
+                </button>
               </div>
             </td>
           </tr>
@@ -61,22 +67,23 @@
     </div>
 
     <div class="pagination">
-      <span class="pagination-info">عرض 1–3 من أصل 3 سجلات</span>
+      <span class="pagination-info">عرض 1–{{ items.length }} من أصل {{ items.length }} سجلات</span>
       <div class="pagination-controls">
-        <button class="page-btn" disabled>&#8249;</button>
+        <button class="page-btn" disabled><i class="bi bi-chevron-right"></i></button>
         <button class="page-btn active">1</button>
-        <button class="page-btn" disabled>&#8250;</button>
+        <button class="page-btn" disabled><i class="bi bi-chevron-left"></i></button>
       </div>
     </div>
   </div>
 
+  <!-- ===== DIALOG / MODAL ===== -->
   <div class="dialog-overlay" *ngIf="dialogVisible" (click)="send(false)">
     <div class="dialog-container" (click)="$event.stopPropagation()">
 
       <div class="dialog-header">
         <div class="header-left">
-          <span class="header-icon">🏦</span>
-          <h3 class="dialog-title">إضافة بنك</h3>
+          <span class="header-icon"><i class="bi bi-bank"></i></span>
+          <h3 class="dialog-title">{{ editMode ? 'تعديل بنك' : 'إضافة بنك' }}</h3>
         </div>
         <button class="dialog-close-btn" (click)="send(false)">✕</button>
       </div>
@@ -86,7 +93,7 @@
         <div class="dialog-body">
 
           <div class="form-section-title">
-            <span class="section-icon">💳</span>
+            <span class="section-icon"><i class="bi bi-credit-card"></i></span>
             بيانات البنك
           </div>
 
@@ -94,16 +101,13 @@
             <div class="col col-6">
               <label class="form-label">اسم البنك <span>*</span></label>
               <input type="text" class="form-control" formControlName="bankName" placeholder="أدخل اسم البنك">
-
               <div class="error-text" *ngIf="bankForm.get('bankName')?.invalid && bankForm.get('bankName')?.touched">
                 اسم البنك مطلوب.
               </div>
             </div>
-
             <div class="col col-6">
               <label class="form-label">كود البنك / SWIFT <span>*</span></label>
               <input type="text" class="form-control" formControlName="bankCode" placeholder="أدخل كود البنك">
-
               <div class="error-text" *ngIf="bankForm.get('bankCode')?.invalid && bankForm.get('bankCode')?.touched">
                 كود البنك مطلوب.
               </div>
@@ -111,23 +115,17 @@
           </div>
 
           <div class="row row-three">
-
             <div class="col">
               <label class="form-label">اسم صاحب الحساب <span>*</span></label>
-              <input type="text" class="form-control" formControlName="accountHolder"
-                placeholder="أدخل اسم صاحب الحساب">
-
-              <div class="error-text"
-                *ngIf="bankForm.get('accountHolder')?.invalid && bankForm.get('accountHolder')?.touched">
+              <input type="text" class="form-control" formControlName="accountHolder" placeholder="أدخل اسم صاحب الحساب">
+              <div class="error-text" *ngIf="bankForm.get('accountHolder')?.invalid && bankForm.get('accountHolder')?.touched">
                 اسم صاحب الحساب مطلوب.
               </div>
             </div>
-
             <div class="col">
               <label class="form-label">كود الفرع</label>
-              <input type="text" class="form-control" placeholder="أدخل كود الفرع">
+              <input type="text" class="form-control" formControlName="branchCode" placeholder="أدخل كود الفرع">
             </div>
-
             <div class="col">
               <label class="form-label">الحالة</label>
               <select class="form-select" formControlName="isActive">
@@ -136,26 +134,21 @@
                 </option>
               </select>
             </div>
-
           </div>
 
           <div class="form-section-title">
-            <span class="section-icon">⚙️</span>
+            <span class="section-icon"><i class="bi bi-gear"></i></span>
             تفاصيل الحساب البنكي
           </div>
 
           <div class="row row-three">
-
             <div class="col">
               <label class="form-label">رقم الحساب <span>*</span></label>
               <input type="text" class="form-control" formControlName="accountNumber" placeholder="أدخل رقم الحساب">
-
-              <div class="error-text"
-                *ngIf="bankForm.get('accountNumber')?.invalid && bankForm.get('accountNumber')?.touched">
+              <div class="error-text" *ngIf="bankForm.get('accountNumber')?.invalid && bankForm.get('accountNumber')?.touched">
                 رقم الحساب مطلوب.
               </div>
             </div>
-
             <div class="col">
               <label class="form-label">العملة</label>
               <select class="form-select" formControlName="currency">
@@ -165,59 +158,49 @@
                 </option>
               </select>
             </div>
-
             <div class="col">
               <label class="form-label">عنوان الفرع</label>
               <input type="text" class="form-control" formControlName="bankAddress" placeholder="أدخل عنوان الفرع">
             </div>
-
           </div>
 
           <div class="form-section-title">
-            <span class="section-icon">📊</span>
+            <span class="section-icon"><i class="bi bi-bar-chart"></i></span>
             المعلومات المالية
           </div>
 
           <div class="row row-three">
-
             <div class="col">
               <label class="form-label">الرصيد الحالي</label>
-              <input type="text" class="form-control" placeholder="أدخل الرصيد الحالي">
+              <input type="text" class="form-control" formControlName="currentBalance" placeholder="أدخل الرصيد الحالي">
             </div>
-
             <div class="col">
               <label class="form-label">آخر معاملة</label>
-              <input type="text" class="form-control" placeholder="أدخل قيمة آخر معاملة">
+              <input type="text" class="form-control" formControlName="lastTransaction" placeholder="أدخل قيمة آخر معاملة">
             </div>
-
             <div class="col">
               <label class="form-label">المبالغ قيد التسوية</label>
-              <input type="text" class="form-control" placeholder="أدخل المبلغ">
+              <input type="text" class="form-control" formControlName="pendingAmount" placeholder="أدخل المبلغ">
             </div>
-
           </div>
 
           <div class="row row-three">
-
             <div class="col">
               <label class="form-label">تاريخ فتح الحساب</label>
-              <input type="date" class="form-control">
+              <input type="date" class="form-control" formControlName="openingDate">
             </div>
-
             <div class="col">
               <label class="form-label">تاريخ آخر مراجعة</label>
-              <input type="date" class="form-control">
+              <input type="date" class="form-control" formControlName="lastReviewDate">
             </div>
-
             <div class="col">
               <label class="form-label">تاريخ المراجعة القادمة</label>
-              <input type="date" class="form-control">
+              <input type="date" class="form-control" formControlName="nextReviewDate">
             </div>
-
           </div>
 
           <div class="form-section-title">
-            <span class="section-icon">👤</span>
+            <span class="section-icon"><i class="bi bi-person"></i></span>
             معلومات التواصل
           </div>
 
@@ -225,6 +208,9 @@
             <div class="col col-6">
               <label class="form-label">رقم الهاتف</label>
               <input type="tel" class="form-control" formControlName="contactNumber" placeholder="أدخل رقم الهاتف">
+              <div class="error-text" *ngIf="bankForm.get('contactNumber')?.invalid && bankForm.get('contactNumber')?.touched">
+                رقم هاتف غير صحيح.
+              </div>
             </div>
           </div>
 
@@ -234,9 +220,8 @@
           <button type="button" class="btn-action-outline" (click)="send(false)">
             إلغاء
           </button>
-
           <button type="button" class="btn-action-primary" (click)="onSave()">
-            حفظ
+           <i class="bi bi-check-circle-fill"></i> حفظ
           </button>
         </div>
 

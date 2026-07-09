@@ -1,17 +1,23 @@
+<!-- sidebar.component.html -->
 <nav class="sidebar" [class.collapsed]="isCollapsed">
 
   <!-- الشعار -->
   <div class="sidebar-brand">
 
     <ng-container *ngIf="!isCollapsed">
-      <div class="brand-logo">🏗</div>
-      <span class="brand-name">نظام إدارة شركات المقاولات</span>
+      <div class="brand-logo">
+        <i class="bi bi-buildings"></i>
+      </div>
+      <span class="brand-name">
+        نظام إدارة شركات المقاولات
+      </span>
     </ng-container>
 
-    <button class="collapse-btn" (click)="toggleCollapse()" [title]="isCollapsed ? 'توسيع' : 'طي'">
-
-      <span>{{ isCollapsed ? '‹' : '›' }}</span>
-
+    <button
+      class="collapse-btn"
+      (click)="toggleCollapse()"
+      [title]="isCollapsed ? 'توسيع' : 'طي'">
+      <i class="bi" [ngClass]="isCollapsed ? 'bi-chevron-double-left' : 'bi-chevron-double-right'"></i>
     </button>
 
   </div>
@@ -23,53 +29,64 @@
 
       <!-- عنوان المجموعة -->
       <div class="nav-group-label" *ngIf="group.groupLabel && !isCollapsed">
-
         {{ group.groupLabel }}
-
       </div>
 
       <!-- عناصر القائمة -->
       <ng-container *ngFor="let item of group.items">
 
         <!-- عنصر بدون قائمة فرعية -->
-        <a *ngIf="!item.children" [routerLink]="item.route" routerLinkActive="active" class="nav-item"
+        <a
+          *ngIf="!item.children"
+          [routerLink]="item.route"
+          routerLinkActive="active"
+          class="nav-item"
           [title]="isCollapsed ? item.label : ''">
 
-          <span class="nav-icon">{{ item.icon }}</span>
+          <span class="nav-icon">
+            <i [class]="item.icon"></i>
+          </span>
 
           <span class="nav-label" *ngIf="!isCollapsed">
-
             {{ item.label }}
-
           </span>
 
         </a>
 
         <!-- عنصر يحتوي على قائمة فرعية -->
-        <div *ngIf="item.children" class="nav-group">
+        <div class="nav-group" *ngIf="item.children">
 
-          <div class="nav-item" (click)="toggleSubMenu(item)" [title]="isCollapsed ? item.label : ''">
+          <div
+            class="nav-item"
+            (click)="toggleSubMenu(item)"
+            [title]="isCollapsed ? item.label : ''">
 
-            <span class="nav-icon">{{ item.icon }}</span>
+            <span class="nav-icon">
+              <i [class]="item.icon"></i>
+            </span>
 
             <span class="nav-label" *ngIf="!isCollapsed">
-
               {{ item.label }}
-
             </span>
 
             <span class="nav-chevron" *ngIf="!isCollapsed">
-
-              {{ item.expanded ? '▾' : '▸' }}
-
+              <i class="bi" [ngClass]="item.expanded ? 'bi-chevron-down' : 'bi-chevron-left'"></i>
             </span>
 
           </div>
 
+          <!-- القائمة الفرعية -->
           <div class="nav-submenu" *ngIf="item.expanded && !isCollapsed">
 
-            <a *ngFor="let child of item.children" [routerLink]="child.route" routerLinkActive="active"
+            <a
+              *ngFor="let child of item.children"
+              [routerLink]="child.route"
+              routerLinkActive="active"
               class="nav-item sub">
+
+              <span class="nav-icon">
+                <i [class]="child.icon"></i>
+              </span>
 
               <span class="nav-label">
                 {{ child.label }}

@@ -1,51 +1,62 @@
 <div class="fade-in">
 
-  <!-- Page Header -->
+  <!-- رأس الصفحة -->
   <div class="page-header">
     <div>
-      <div class="page-title">Dashboard Overview</div>
-      <div class="page-subtitle">Welcome back, Admin — here's what's happening today.</div>
+      <div class="page-title">لوحة التحكم</div>
+      <div class="page-subtitle">
+        مرحبًا بعودتك، مدير النظام — إليك ملخص نشاط اليوم.
+      </div>
     </div>
-    <button class="btn btn-primary">📥 Export Report</button>
+    <button class="btn btn-primary">📥 تصدير التقرير</button>
   </div>
 
-  <!-- Metric Cards -->
+  <!-- بطاقات الإحصائيات -->
   <div class="dashboard-grid">
     <div class="metric-card" *ngFor="let stat of stats">
       <div class="metric-top">
         <div class="metric-icon">{{ stat.icon }}</div>
-        <span class="metric-trend" [class.positive]="stat.positive" [class.negative]="!stat.positive">
+        <span
+          class="metric-trend"
+          [class.positive]="stat.positive"
+          [class.negative]="!stat.positive">
+
           {{ stat.positive ? '▲' : '▼' }} {{ stat.trend }}
         </span>
       </div>
+
       <div class="metric-value">{{ stat.value }}</div>
       <div class="metric-label">{{ stat.label }}</div>
     </div>
   </div>
 
-  <!-- Content Grid -->
+  <!-- المحتوى الرئيسي -->
   <div class="grid" style="grid-template-columns: 2fr 1fr;">
 
-    <!-- Recent Transactions -->
+    <!-- آخر العمليات -->
     <div class="card">
       <div class="card-header">
-        <span class="card-header-title">Recent Transactions</span>
-        <a href="#" class="text-sm text-primary">View all →</a>
+        <span class="card-header-title">آخر العمليات</span>
+        <a href="#" class="text-sm text-primary">عرض الكل ←</a>
       </div>
+
       <div class="table-container">
         <table class="table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Type</th>
-              <th>Project</th>
-              <th>Amount</th>
-              <th>Date</th>
+              <th>رقم العملية</th>
+              <th>النوع</th>
+              <th>المشروع</th>
+              <th>المبلغ</th>
+              <th>التاريخ</th>
             </tr>
           </thead>
+
           <tbody>
             <tr *ngFor="let txn of recentTransactions">
-              <td><span class="table-code">{{ txn.id }}</span></td>
+              <td>
+                <span class="table-code">{{ txn.id }}</span>
+              </td>
               <td>{{ txn.type }}</td>
               <td class="font-medium">{{ txn.project }}</td>
               <td class="font-semibold text-success">{{ txn.amount }}</td>
@@ -56,23 +67,36 @@
       </div>
     </div>
 
-    <!-- Top Projects -->
+    <!-- أفضل المشاريع -->
     <div class="card">
       <div class="card-header">
-        <span class="card-header-title">Top Projects</span>
-        <span class="badge badge-info">{{ topProjects.length }} Active</span>
+        <span class="card-header-title">أفضل المشاريع</span>
+        <span class="badge badge-info">
+          {{ topProjects.length }} مشروع نشط
+        </span>
       </div>
+
       <div class="card-body" style="padding: 12px;">
-        <div class="project-row" *ngFor="let p of topProjects; let i = index">
+        <div
+          class="project-row"
+          *ngFor="let p of topProjects; let i = index">
+
           <div class="project-rank">#{{ i + 1 }}</div>
+
           <div class="project-info">
             <div class="font-medium text-sm">{{ p.name }}</div>
-            <div class="text-success text-xs font-semibold">{{ p.profit }}</div>
+            <div class="text-success text-xs font-semibold">
+              {{ p.profit }}
+            </div>
           </div>
-          <span class="badge badge-active">{{ p.status }}</span>
+
+          <span class="badge badge-active">
+            {{ p.status }}
+          </span>
         </div>
       </div>
     </div>
 
   </div>
+
 </div>

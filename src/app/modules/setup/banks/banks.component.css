@@ -1,15 +1,24 @@
-﻿/* ==========================================================================
+﻿/* banks.component.css */
+
+/* ==========================================================================
    GLOBAL APP WRAPPER & LIGHT UI DESIGN SYSTEM
    ========================================================================== */
-body {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
   background-color: #f4f6f9;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #333;
+  padding: 20px;
 }
 
 .fade-in {
   animation: fadeIn 0.4s ease-in-out;
-  padding: 20px;
   direction: rtl; /* Sets base layout orientation to right-to-left for Arabic table context */
 }
 
@@ -26,6 +35,8 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .page-title {
@@ -48,11 +59,19 @@ body {
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-primary-action:hover {
   opacity: 0.9;
+  background: #138496;
+}
+
+.btn-primary-action i {
+  font-size: 1.1rem;
 }
 
 /* ==========================================================================
@@ -75,6 +94,20 @@ body {
   padding: 16px 20px;
   border-bottom: 1px solid #edf2f7;
   background: #fafbfc;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .search-box {
@@ -87,6 +120,7 @@ body {
   position: absolute;
   right: 12px;
   color: #a0aec0;
+  font-size: 0.9rem;
 }
 
 .search-box input {
@@ -96,6 +130,11 @@ body {
   font-size: 0.9rem;
   width: 240px;
   outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-box input:focus {
+  border-color: #17a2b8;
 }
 
 .btn-outline {
@@ -105,8 +144,19 @@ body {
   border-radius: 6px;
   font-size: 0.88rem;
   cursor: pointer;
-  margin-left: 8px;
   color: #4a5568;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-outline:hover {
+  background: #f1f5f9;
+}
+
+.btn-outline i {
+  font-size: 0.95rem;
 }
 
 /* Table Architecture Elements */
@@ -118,6 +168,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   text-align: right;
+  min-width: 600px;
 }
 
 .table th {
@@ -127,6 +178,7 @@ body {
   font-weight: 600;
   font-size: 0.88rem;
   border-bottom: 2px solid #edf2f7;
+  white-space: nowrap;
 }
 
 .table td {
@@ -137,8 +189,19 @@ body {
   vertical-align: middle;
 }
 
-.table-row-num { color: #a0aec0; font-weight: bold; }
-.table-code { background: #edf2f7; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem; }
+.table tbody tr:hover {
+  background-color: #f7fafc;
+}
+
+.table-code {
+  background: #edf2f7;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
 .font-medium { font-weight: 500; }
 .text-muted { color: #718096; }
 .text-xs { font-size: 0.8rem; }
@@ -152,20 +215,65 @@ body {
   border-radius: 50px;
   font-size: 0.82rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .badge-active { background-color: #e6fffa; color: #047481; }
 .badge-inactive { background-color: #feebcb; color: #9c4221; }
 
-.status-dot { width: 6px; height: 6px; border-radius: 50%; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
 .status-dot.active { background-color: #319795; }
 .status-dot.inactive { background-color: #dd6b20; }
 
-/* Operational Buttons */
-.action-btns { display: flex; gap: 8px; }
-.btn-icon { background: none; border: none; font-size: 1.1rem; cursor: pointer; padding: 4px; border-radius: 4px; }
-.btn-icon.edit { color: #3182ce; }
-.btn-icon.delete { color: #e53e3e; }
+/* ========================================================================
+   ACTION BUTTONS - FIXED ICON STYLING (perfect alignment)
+   ========================================================================== */
+.action-btns {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-icon {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.95rem;
+  color: #4a5568;
+  padding: 0;
+  line-height: 1;
+}
+
+.btn-icon i {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Edit State */
+.btn-icon.edit {
+  color: #3182ce;
+}
+.btn-icon.edit:hover {
+  background: #ebf8ff;
+  border-color: #bee3f8;
+}
+
+/* Delete State */
+.btn-icon.delete {
+  color: #e53e3e;
+}
+.btn-icon.delete:hover {
+  background: #fff5f5;
+  border-color: #fed7d7;
+}
 
 /* Pagination Footer Block */
 .pagination {
@@ -175,6 +283,8 @@ body {
   padding: 16px 20px;
   background: #f7fafc;
   border-top: 1px solid #edf2f7;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .pagination-info { font-size: 0.88rem; color: #718096; }
@@ -185,9 +295,13 @@ body {
   background: #fff;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .page-btn.active { background: #3182ce; color: #fff; border-color: #3182ce; }
-.page-btn:disabled { color: #cbd5e0; cursor: not-allowed; }
+.page-btn:disabled { color: #cbd5e0; cursor: not-allowed; opacity: 0.6; }
 
 /* ==========================================================================
    MODAL WINDOW DIALOG LIGHT INTERFACE DESIGN
@@ -212,11 +326,12 @@ body {
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
   width: 100%;
-  max-width: 760px; /* Footprint matches wide alignment layout */
+  max-width: 760px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   animation: dialogPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  direction: rtl; /* inner content RTL for Arabic */
 }
 
 @keyframes dialogPop {
@@ -230,7 +345,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-  background: #1e74fd; /* Bright operational accent background color */
+  background: #0f7281;
   color: #ffffff;
 }
 
@@ -241,7 +356,8 @@ body {
 }
 
 .header-icon {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
+  display: inline-flex;
 }
 
 .dialog-title {
@@ -258,13 +374,13 @@ body {
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1;
+  padding: 0 4px;
 }
 
 .dialog-close-btn:hover {
   color: #ffffff;
 }
 
-/* Clean Modal Content Body Styling */
 .light-form-layout {
   background: #ffffff;
   display: flex;
@@ -281,7 +397,7 @@ body {
 .form-section-title {
   font-size: 0.92rem;
   font-weight: 600;
-  color: #2b6cb0; /* Deep primary label matching structural design */
+  color: #2b6cb0;
   margin: 22px 0 14px 0;
   display: flex;
   align-items: center;
@@ -294,29 +410,38 @@ body {
   margin-top: 0;
 }
 
-/* Row-Column System Blocks */
+.section-icon {
+  display: inline-flex;
+  font-size: 1rem;
+}
+
 .row {
   display: flex;
   gap: 16px;
   margin-bottom: 14px;
+  flex-wrap: wrap;
 }
 
 .col {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 140px;
 }
 
-/* Width Definition Classes */
 .col-6 { flex: 0 0 calc(50% - 8px); }
 .row-three .col { flex: 1; }
 
-/* Light Input Elements & Selection Wrappers */
 .light-form-layout .form-label {
   font-size: 0.82rem;
   font-weight: 500;
   color: #4a5568;
   margin-bottom: 6px;
+}
+
+.light-form-layout .form-label span {
+  color: #e53e3e;
+  margin-right: 2px;
 }
 
 .light-form-layout .form-control,
@@ -333,7 +458,7 @@ body {
 }
 
 .light-form-layout .form-control::placeholder {
-  color: #cbd5e0; /* Clean light gray structural text placeholders */
+  color: #cbd5e0;
   font-size: 0.88rem;
 }
 
@@ -344,7 +469,6 @@ body {
   outline: none;
 }
 
-/* Control Dialog Row Footer Buttons */
 .dialog-footer {
   display: flex;
   justify-content: flex-end;
@@ -363,6 +487,7 @@ body {
   color: #4a5568;
   border-radius: 6px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
 .btn-action-outline:hover {
@@ -373,15 +498,23 @@ body {
   padding: 9px 22px;
   font-size: 0.88rem;
   font-weight: 500;
-  background: #1e74fd;
+  background:  #0f7281;
   border: none;
   color: #ffffff;
   border-radius: 6px;
   cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .btn-action-primary:hover {
-  background: #1161e2;
+  background: #17a2b8;
+}
+
+.btn-action-primary i {
+  font-size: 1rem;
 }
 
 .error-text {
@@ -390,52 +523,45 @@ body {
   margin-top: 4px;
 }
 
-/* Mobile Responsiveness Viewport Adapters */
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
 @media (max-width: 768px) {
   .row {
     flex-direction: column;
     gap: 12px;
   }
   .col-6 {
+    flex: 1 1 100%;
     width: 100%;
-    flex: none;
+  }
+  .row-three .col {
+    flex: 1 1 100%;
+  }
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .toolbar-left, .toolbar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .search-box input {
+    width: 100%;
+  }
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dialog-container {
+    max-width: 100%;
+    margin: 10px;
+  }
+  .dialog-body {
+    padding: 16px;
+  }
+  .pagination {
+    flex-direction: column;
+    align-items: center;
   }
 }
-.btn-icon {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  width: 34px;
-  height: 34px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-/* Icon scaling adjustments */
-.btn-icon i,
-.btn-icon .material-icons {
-  font-size: 0.95rem; /* Precise balanced scale */
-  line-height: 1;
-}
-
-/* Edit State Highlight color mirroring */
-.btn-icon.edit {
-  color: #3182ce;
-}
-.btn-icon.edit:hover {
-  background: #ebf8ff;
-  border-color: #bee3f8;
-}
-
-/* Delete State Highlight color mirroring */
-.btn-icon.delete {
-  color: #e53e3e;
-}
-.btn-icon.delete:hover {
-  background: #fff5f5;
-  border-color: #fed7d7;
-}
-

@@ -1,3 +1,4 @@
+// sidebar.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -25,158 +26,154 @@ export interface NavGroup {
 export class SidebarComponent {
 
   isCollapsed = false;
-  navGroups: NavGroup[] = [
 
+  navGroups: NavGroup[] = [
     {
       items: [
         {
           label: 'لوحة التحكم',
-          icon: '⌂',
+          icon: 'bi bi-speedometer2',
           route: '/dashboard'
         }
       ]
     },
-
     {
       groupLabel: 'الإعدادات',
       items: [
         {
           label: 'بيانات الشركة',
-          icon: '□',
+          icon: 'bi bi-building',
           route: '/setup/company'
         },
         {
           label: 'المشروعات',
-          icon: '▣',
+          icon: 'bi bi-kanban',
           route: '/setup/projects'
         },
         {
           label: 'مراكز التكلفة',
-          icon: '◈',
+          icon: 'bi bi-diagram-3',
           route: '/setup/cost-centers'
         },
         {
-          label: 'المواد ووحدات القياس',
-          icon: '◩',
+          label: 'المواد',
+          icon: 'bi bi-box-seam',
           route: '/setup/materials'
         },
         {
           label: 'المعدات',
-          icon: '⌘',
+          icon: 'bi bi-tools',
           route: '/setup/equipment'
         },
         {
           label: 'البنوك',
-          icon: '◫',
+          icon: 'bi bi-bank',
           route: '/setup/banks'
         },
         {
           label: 'الخزائن',
-          icon: '◉',
+          icon: 'bi bi-safe2',
           route: '/setup/treasuries'
         },
         {
           label: 'الإعدادات العامة',
-          icon: '⚙',
+          icon: 'bi bi-gear',
           route: '/setup/settings'
         }
       ]
     },
-
     {
       groupLabel: 'الأطراف',
       items: [
         {
           label: 'الموردون',
-          icon: '◌',
+          icon: 'bi bi-truck',
           route: '/setup/suppliers'
         },
         {
           label: 'العملاء',
-          icon: '◎',
+          icon: 'bi bi-people',
           route: '/setup/customers'
         }
       ]
     },
-
     {
       groupLabel: 'الحركات',
       items: [
         {
-          label: 'توريدات يومية',
-          icon: '→',
+          label: 'التوريدات اليومية',
+          icon: 'bi bi-box-arrow-in-down',
           route: '/transactions/supplies/daily-supplies'
         },
         {
           label: 'الكشوف الشهرية',
-          icon: '≣',
+          icon: 'bi bi-file-earmark-text',
           route: '/transactions/supplies/monthly-statements'
         },
         {
           label: 'تأجير المعدات',
-          icon: '⌗',
+          icon: 'bi bi-truck-flatbed',
           route: '/transactions/equipment-rental/rentals'
         },
         {
           label: 'المشتريات',
-          icon: '+',
+          icon: 'bi bi-cart-check',
           route: '/transactions/purchases/invoices'
         },
         {
           label: 'المبيعات',
-          icon: '−',
+          icon: 'bi bi-receipt',
           route: '/transactions/sales/invoices'
         },
         {
           label: 'الخزينة',
-          icon: '◍',
+          icon: 'bi bi-cash-stack',
           route: '/transactions/treasury/vouchers'
         },
         {
           label: 'إيداعات البنوك',
-          icon: '◫',
+          icon: 'bi bi-piggy-bank',
           route: '/transactions/banks/deposits'
         },
         {
           label: 'المصروفات',
-          icon: '↘',
+          icon: 'bi bi-wallet2',
           route: '/transactions/expenses'
         },
         {
           label: 'الإيرادات',
-          icon: '↗',
+          icon: 'bi bi-graph-up-arrow',
           route: '/transactions/revenues'
         }
       ]
     },
-
     {
       groupLabel: 'التقارير',
       items: [
         {
           label: 'كشف حساب المورد',
-          icon: '☰',
+          icon: 'bi bi-file-earmark-person',
           route: '/reports/supplier-statement'
         },
         {
           label: 'كشف حساب العميل',
-          icon: '☰',
+          icon: 'bi bi-file-earmark-person',
           route: '/reports/customer-statement'
         },
         {
           label: 'التقارير المالية',
-          icon: '◬',
+          icon: 'bi bi-file-earmark-bar-graph',
           route: '/reports/financial'
         },
         {
           label: 'ربحية المشروعات',
-          icon: '△',
+          icon: 'bi bi-bar-chart-line',
           route: '/reports/profitability'
         }
       ]
     }
-
   ];
+
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
   }
