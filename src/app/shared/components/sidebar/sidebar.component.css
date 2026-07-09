@@ -49,26 +49,43 @@
 }
 
 .brand-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: rgba(79, 70, 229, 0.15);
-  color: #818CF8;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--primary, #0f7281);
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 1.15rem;
   flex-shrink: 0;
 }
 
-.brand-name {
-  flex: 1;
-  color: #FFFFFF;
-  font-size: 15px;
-  font-weight: 700;
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
+  flex: 1;
+}
+
+.brand-name {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
   white-space: nowrap;
   letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 /*==========================================================
@@ -76,22 +93,39 @@
 ==========================================================*/
 
 .collapse-btn {
-  width: 34px;
-  height: 34px;
-  border: none;
-  border-radius: 10px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.5);
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: .25s;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}
+
+.collapse-btn i {
+  font-size: 14px;
+  -webkit-text-stroke: 0.5px;
 }
 
 .collapse-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
   color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.collapse-btn:active {
+  transform: scale(0.95);
+}
+
+.sidebar.collapsed .collapse-btn {
+  margin-inline-start: 0;
 }
 
 /*==========================================================
