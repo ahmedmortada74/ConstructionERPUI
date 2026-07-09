@@ -19,14 +19,10 @@
   background: #F1F5F9; /* content background */
 }
 
-/* Header – fixed height, stays on top */
+/* Header – let the inner header component control its own height */
 .app-header {
   flex-shrink: 0;
-  height: 64px; /* adjust to match your header height */
-  background: #FFFFFF; /* or your header color */
-  border-bottom: 1px solid var(--slate-200, #E2E8F0);
-  z-index: 10;
-  position: relative;
+  z-index: 100;
 }
 
 /* Body: sidebar + content */
@@ -51,7 +47,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 20px 24px;
-  background: #F1F5F9; /* matches content background */
+  background: #FFFFFF; /* matches content background */
 }
 
 /* RTL support: if your app uses RTL, the sidebar border should be on the left */

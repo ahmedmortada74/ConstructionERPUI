@@ -1,1 +1,29 @@
-﻿/* Component styles */
+@import '../setup-shared.css';
+
+/* 
+ * 🎨 Override colors for this specific setup screen here 
+ */
+.dialog-header {
+  background: #f43f5e;
+}
+
+.btn-primary-action {
+  background: #f43f5e;
+}
+
+.btn-primary-action:hover {
+  background: #e11d48;
+}
+
+.page-btn.active {
+  background: #f43f5e;
+  border-color: #f43f5e;
+}
+
+.btn-action-primary {
+  background: #f43f5e;
+}
+
+.btn-action-primary:hover {
+  background: #e11d48;
+}

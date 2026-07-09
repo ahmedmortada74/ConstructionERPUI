@@ -2,14 +2,14 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { 
-    path: 'dashboard', 
-    loadComponent: () => import('./modules/dashboard/dashboard.component').then(m => m.DashboardComponent) 
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./modules/dashboard/dashboard.component').then(m => m.DashboardComponent)
   },
-  
+
   // Setup Routes
   { path: 'setup/company', loadComponent: () => import('./modules/setup/company/company.component').then(m => m.CompanyComponent) },
-  { path: 'setup/projects', loadComponent: () => import('./modules/setup/projects/projects.component').then(m => m.ProjectsComponent) },
+  { path: 'setup/locations', loadComponent: () => import('./modules/setup/locations/locations.component').then(m => m.LocationsComponent) },
   { path: 'setup/cost-centers', loadComponent: () => import('./modules/setup/cost-centers/cost-centers.component').then(m => m.CostCentersComponent) },
   { path: 'setup/suppliers', loadComponent: () => import('./modules/setup/suppliers/suppliers.component').then(m => m.SuppliersComponent) },
   { path: 'setup/customers', loadComponent: () => import('./modules/setup/customers/customers.component').then(m => m.CustomersComponent) },

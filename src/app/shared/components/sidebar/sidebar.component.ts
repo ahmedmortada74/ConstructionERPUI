@@ -46,9 +46,9 @@ export class SidebarComponent {
           route: '/setup/company'
         },
         {
-          label: 'المشروعات',
+          label: 'المواقع',
           icon: 'bi bi-kanban',
-          route: '/setup/projects'
+          route: '/setup/locations'
         },
         {
           label: 'مراكز التكلفة',
