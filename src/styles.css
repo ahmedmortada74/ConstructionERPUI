@@ -206,7 +206,7 @@ a:hover {
     align-items: center;
     justify-content: space-between;
     margin-bottom: var(--spacing-5);
-    background-color: #eeeff0;
+    background-color: #ffffff;
     border-radius: 6px;
     padding: 1rem;
     box-shadow: var(--shadow-xs);
@@ -417,7 +417,7 @@ a:hover {
     justify-content: space-between;
     gap: var(--spacing-3);
     padding: var(--spacing-4) var(--spacing-5);
-    background: var(--white);
+   
     border-bottom: 1px solid var(--slate-100);
 }
 

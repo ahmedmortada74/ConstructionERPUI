@@ -1,27 +1,27 @@
 /* 
  * 🎨 Override colors for this specific setup screen here 
  */
-.dialog-header {
-  background: #10b981;
+.dialog-header  {
+  background: #0f7281;
 }
 
 .btn-primary-action {
-  background: #10b981;
+  background: #0f7281;
 }
 
 .btn-primary-action:hover {
-  background: #059669;
+  background: #0b5a66;
 }
 
 .page-btn.active {
-  background: #10b981;
-  border-color: #10b981;
+  background: #0f7281;
+  border-color: #0f7281;
 }
 
 .btn-action-primary {
-  background: #10b981;
+  background: #0f7281;
 }
 
 .btn-action-primary:hover {
-  background: #059669;
+  background: #0b5a66;
 }

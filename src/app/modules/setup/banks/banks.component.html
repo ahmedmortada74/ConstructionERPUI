@@ -30,7 +30,7 @@
     <div class="table-container">
       <table class="table">
         <thead>
-          <tr>
+          <tr class="bg-red-500">
             <th>الكود</th>
             <th>الاسم</th>
             <th>التفاصيل</th>
@@ -57,7 +57,7 @@
                   <i class="bi bi-pencil-square"></i>
                 </button>
                 <button class="btn-icon delete" title="حذف" (click)="deleteItem(i)">
-                 <i class="bi bi-trash"></i>
+                  <i class="bi bi-trash"></i>
                 </button>
               </div>
             </td>
@@ -117,8 +117,10 @@
           <div class="row row-three">
             <div class="col">
               <label class="form-label">اسم صاحب الحساب <span>*</span></label>
-              <input type="text" class="form-control" formControlName="accountHolder" placeholder="أدخل اسم صاحب الحساب">
-              <div class="error-text" *ngIf="bankForm.get('accountHolder')?.invalid && bankForm.get('accountHolder')?.touched">
+              <input type="text" class="form-control" formControlName="accountHolder"
+                placeholder="أدخل اسم صاحب الحساب">
+              <div class="error-text"
+                *ngIf="bankForm.get('accountHolder')?.invalid && bankForm.get('accountHolder')?.touched">
                 اسم صاحب الحساب مطلوب.
               </div>
             </div>
@@ -145,7 +147,8 @@
             <div class="col">
               <label class="form-label">رقم الحساب <span>*</span></label>
               <input type="text" class="form-control" formControlName="accountNumber" placeholder="أدخل رقم الحساب">
-              <div class="error-text" *ngIf="bankForm.get('accountNumber')?.invalid && bankForm.get('accountNumber')?.touched">
+              <div class="error-text"
+                *ngIf="bankForm.get('accountNumber')?.invalid && bankForm.get('accountNumber')?.touched">
                 رقم الحساب مطلوب.
               </div>
             </div>
@@ -176,7 +179,8 @@
             </div>
             <div class="col">
               <label class="form-label">آخر معاملة</label>
-              <input type="text" class="form-control" formControlName="lastTransaction" placeholder="أدخل قيمة آخر معاملة">
+              <input type="text" class="form-control" formControlName="lastTransaction"
+                placeholder="أدخل قيمة آخر معاملة">
             </div>
             <div class="col">
               <label class="form-label">المبالغ قيد التسوية</label>
@@ -208,7 +212,8 @@
             <div class="col col-6">
               <label class="form-label">رقم الهاتف</label>
               <input type="tel" class="form-control" formControlName="contactNumber" placeholder="أدخل رقم الهاتف">
-              <div class="error-text" *ngIf="bankForm.get('contactNumber')?.invalid && bankForm.get('contactNumber')?.touched">
+              <div class="error-text"
+                *ngIf="bankForm.get('contactNumber')?.invalid && bankForm.get('contactNumber')?.touched">
                 رقم هاتف غير صحيح.
               </div>
             </div>
@@ -221,7 +226,7 @@
             إلغاء
           </button>
           <button type="button" class="btn-action-primary" (click)="onSave()">
-           <i class="bi bi-check-circle-fill"></i> حفظ
+            <i class="bi bi-check-circle-fill"></i> حفظ
           </button>
         </div>
 
@@ -229,3 +234,4 @@
     </div>
   </div>
 </div>
+
