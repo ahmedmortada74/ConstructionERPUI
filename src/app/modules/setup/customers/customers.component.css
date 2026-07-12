@@ -25,3 +25,13 @@
 .btn-action-primary:hover {
   background: #2563eb;
 }
+
+.btn-icon.edit {
+    color: #3b82f6;
+}
+
+.btn-icon.edit:hover {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.10);
+    border-color: rgba(59, 130, 246, 0.25);
+}

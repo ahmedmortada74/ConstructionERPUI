@@ -487,30 +487,39 @@ a:hover {
 }
 
 .table thead th {
-    padding: 9px 16px;
-    text-align: left;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--slate-400);
-    border-bottom: 1px solid var(--slate-200);
-    background: var(--slate-50);
-    white-space: nowrap;
-    user-select: none;
+   padding: 10px 16px;
+height: 42px;
+
+background: #dddddd;
+color: #334155;
+
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+
+border-top: none;
+
+
+white-space: nowrap;
+vertical-align: middle;
+
+
 }
 
 .table thead th:first-child {
     border-radius: 0;
 }
 
-.table tbody td {
+tbody td {
     padding: 12px 16px;
-    border-bottom: 1px solid var(--slate-100);
-    color: var(--slate-700);
+    color: #334155;
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 1px solid #e5e7eb;
+    background: #ffffff;
     vertical-align: middle;
 }
-
 .table tbody tr {
     transition: background var(--transition);
 }
@@ -1396,8 +1405,7 @@ textarea.form-control {
 
 .btn-icon i { font-size: 0.95rem; line-height: 1; }
 
-.btn-icon.edit  { color: var(--primary, #4F46E5); }
-.btn-icon.edit:hover  { background: rgba(79,70,229,0.08); border-color: rgba(79,70,229,0.2); }
+
 
 .btn-icon.delete { color: var(--danger, #DC2626); }
 .btn-icon.delete:hover { background: #FEF2F2; border-color: #FECACA; }

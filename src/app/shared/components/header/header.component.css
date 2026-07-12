@@ -1,6 +1,6 @@
 .app-header {
     height: var(--header-height);
-    background: var(--header-bg);
+    background: #0F172A;
     border-bottom: 1px solid var(--header-border);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 var(--spacing-5);

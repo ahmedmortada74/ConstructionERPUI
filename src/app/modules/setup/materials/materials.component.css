@@ -2,26 +2,36 @@
  * 🎨 Override colors for this specific setup screen here 
  */
 .dialog-header {
-  background: #f43f5e;
+  background: #ad227f;
 }
 
 .btn-primary-action {
-  background: #f43f5e;
+  background: #ad227f;
 }
 
 .btn-primary-action:hover {
-  background: #e11d48;
+  background: #ad227f;
 }
 
 .page-btn.active {
-  background: #f43f5e;
-  border-color: #f43f5e;
+  background: #ad227f;
+  border-color: #ad227f;
 }
 
 .btn-action-primary {
-  background: #f43f5e;
+  background: #ad227f;
 }
 
 .btn-action-primary:hover {
   background: #e11d48;
+}
+
+.btn-icon.edit {
+    color: #ad227f;
+}
+
+.btn-icon.edit:hover {
+    color: #ad227f;
+    background: rgba(244, 63, 94, 0.10);
+    border-color: rgba(244, 63, 94, 0.25);
 }
